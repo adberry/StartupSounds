@@ -1,22 +1,25 @@
 # StartupSounds
-This script was made to run in the Windows Startup Folder and will play a sound when your computer starts up.
 
-This script also assumes you are not manually launching the script within the Startup folder (most likely you would launch it in the GitRepo folder) and will break if you do so.
+This powershell script was made to run in the Windows Task Scheduler as a task.
 
-Supported sound files include .mp3 and .wav
+Supported sound files include .wav.
 
 # Setup Work
-You will need to have phython installed on your machine, current is 3.9 at https://www.python.org/downloads/ 
 
-This script uses playsound, you will have to install it:
-https://pypi.org/project/playsound/
+You will need to run the following in an admin powershell window: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 
-You may also need to install Pip:
-https://phoenixnap.com/kb/install-pip-windows 
+Then you will need to set up a task that will be ran whenever you want at login,unlock,etc.
+You can take use the .xml in this repository to create a task similar to what I did.
+
+Alternatively, you can create a task with your own triggers.
+If you do, I would recommend the following be done under the Actions tab:
+    Program/script textbox should say "powershell"
+    Add arguemnts (optional) textbox should say -WindowStyle Hidden -File <insert_full_filepath_to_the_playSound.ps1_here>
 
 # How to Call the Script:
-    In the directory where the script is located you will have to call it for it to be added to the startup folder the first time:
-    python StartupSound.py "name of filepath to sound file"
 
-    Example:
-    python StartupSound.py "C:\Users\Adam Berry\Downloads\hello-there.mp3"
+In a powershell window: <filepath_to_the_ps1_file>\.\playSound.ps1
+
+# Change the Sound That Plays
+
+In the playSound.ps1, update the filepath to the audio file on your local PC.
